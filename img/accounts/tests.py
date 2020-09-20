@@ -16,3 +16,6 @@ class LoginTestCase:
 
 
 
+    def test_login_template:
+        response = self.client.get(reverse('accounts:login'))
+        self.assertTemplateUsed(response, 'registration/login.html')
