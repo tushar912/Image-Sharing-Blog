@@ -1,0 +1,15 @@
+.navbar{
+    background-color:#0A79DF!important;
+   
+}
+.navbar a{
+    color:white!important;
+    margin: 0.4em;
+}
+.collapse a{
+    transition: font-size 0.2s;
+}
+.collapse a:hover{
+    font-size:1.1rem!important;
+    color:#74B9FF!important;
+}
