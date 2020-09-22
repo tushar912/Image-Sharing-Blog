@@ -10,8 +10,8 @@ User = get_user_model()
 
 def register(request):
     
-    if request.user.is_authenticated:
-        return redirect(reverse('chat:home'))
+    # if request.user.is_authenticated:
+        # return redirect(reverse('chat:home'))
 
 
     if request.method == 'POST':
@@ -22,10 +22,9 @@ def register(request):
             new_user = authenticate(username=request.POST['username'],
                                     password=request.POST['password1']
                                     )
-            # authenticate and log user in, then redirect to newsFeeds
+            
             login(request, new_user)
-            return redirect(reverse('chat:home'))
-
+            
     else:
         form = RegistrationForm()
     return render(request, 'registration/register.html', {'form': form})
