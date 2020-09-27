@@ -3,16 +3,35 @@
 
 {% block style %}
 <style>
-label{
+form label{
+  font-family: 'Merriweather', serif;
   
 }
+form h1{
+  background-color: #74B9FF!important;
+  margin:0;
+  padding: 0.5em;
+  border-radius: 0.5em 0.5em 0 0;
 
+}
 form{
+  padding-top:0!important;
+  padding-left:0!important;
+  padding-right:0!important;
     background-color: #EAF0F1;
     margin: 7em 1em;
     padding: 2em 2em;
     border-radius: 2em;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
     
+}
+form label{
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+form input{
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 </style>
  
@@ -20,7 +39,9 @@ form{
 {% block content %}
 <div class="row justify-content-end">
   <div class = 'col-6 col-md-4'>
+    
 <form action="{% url 'accounts:register' %}" method="POST">
+  <h1>Login</h1>
     {% csrf_token %}
     {% for field in form %}
       {% if field.errors %}
