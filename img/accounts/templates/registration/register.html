@@ -2,70 +2,9 @@
 {% load widget_tweaks %}
 
 {% block style %}
-<style>
-form label{
-  font-family: 'Merriweather', serif;
-  
-}
-form h1{
-  background-color: #74B9FF!important;
-  margin:0;
-  padding: 0.5em;
-  border-radius: 0.5em 0.5em 0 0;
-  font-family: 'Merriweather', serif;
-}
-form{
-  padding-top:0!important;
-  padding-left:0!important;
-  padding-right:0!important;
-    background-color: #EAF0F1;
-    margin: 7em 1em;
-    padding: 2em 2em;
-    border-radius: 2em;
-    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
-    
-}
-form label{
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-}
-form .btn{
-    width:80px!important;
-    margin-left: auto;
-    margin-right: auto;
-}
-</style>
- 
+
 {%endblock%}
 {% block content %}
-<div class="row justify-content-end">
-  <div class = 'col-6 col-md-4'>
-    
-<form action="{% url 'accounts:register' %}" method="POST">
-  <h1>Register</h1>
-    {% csrf_token %}
-    {% for field in form %}
-      {% if field.errors %}
-      <div class="alert alert-warning alert-dismissible fade show" role='alert'>
-        {{ field.errors }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    {% endif %}
-    
-      <div class="form-group">
-        
-        {{ field.label_tag }}
-        {{field|add_class:'form-control'}}
-      </div>
-   
-    
-    {% endfor %}
-    <span> <input type="submit" class="btn btn-primary btn-block" value="Register"></span>
-   
-  </div>
-      
-</div>
+
 
 {% endblock %}
