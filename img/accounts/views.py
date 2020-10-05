@@ -29,5 +29,13 @@ def register(request):
         form = RegistrationForm()
     return render(request, 'registration/register.html', {'form': form})
 
+@login_required
+def profile(request, username):
+   
+    user = User.objects.get(username=username)
+    
+    is_following = request.user.is_following(user)
+    return render(request, 'accounts/users_profile.html', {'user': user, 'is_following': is_following})
+
 
 
