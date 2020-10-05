@@ -50,6 +50,16 @@ def edit_profile(request):
         form = ProfileForm(instance=request.user.profile)
     return render(request, 'accounts/edit_profile.html', {'form': form})
 
+login_required
+def followers(request):
+    
+    users_followed = request.user.followers.all()
+   
+    unfollowed_users = User.objects.exclude(id__in=users_followed).exclude(id=request.user.id)
+    return render(request, 'accounts/followers.html', {'users_followed': users_followed, 'unfollowed_users': unfollowed_users})
+
+
+
 
 
 
