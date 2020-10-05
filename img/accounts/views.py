@@ -37,5 +37,19 @@ def profile(request, username):
     is_following = request.user.is_following(user)
     return render(request, 'accounts/users_profile.html', {'user': user, 'is_following': is_following})
 
+@login_required
+def edit_profile(request):
+    
+    if request.method == "POST":
+       
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('accounts:view-profile', args=(request.user.username, )))
+    else:
+        form = ProfileForm(instance=request.user.profile)
+    return render(request, 'accounts/edit_profile.html', {'form': form})
+
+
 
 
