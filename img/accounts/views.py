@@ -58,6 +58,18 @@ def followers(request):
     unfollowed_users = User.objects.exclude(id__in=users_followed).exclude(id=request.user.id)
     return render(request, 'accounts/followers.html', {'users_followed': users_followed, 'unfollowed_users': unfollowed_users})
 
+@login_required
+def follow(request, username):
+    
+    request.user.followers.add(User.objects.get(username=username))
+    return redirect('accounts:followers')
+
+
+def unfollow(request, username):
+  
+    request.user.followers.remove(User.objects.get(username=username))
+    return redirect('accounts:followers')
+
 
 
 
