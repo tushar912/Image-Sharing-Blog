@@ -83,3 +83,4 @@ class RegisterationTestCase(TestCase):
     def test_register_page_templates(self):
         response = self.client.get(reverse('accounts:register'))
         self.assertTemplateUsed(response, 'registration/register.html') 
+
