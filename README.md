@@ -1,4 +1,4 @@
-# Image-Sharing-Blog
+# Social-Media-Site
 An image sharing blog built using django
 
 # Tech-used
