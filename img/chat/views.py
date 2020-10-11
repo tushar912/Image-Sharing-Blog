@@ -32,3 +32,14 @@ def add_post(request):
 	else:
 		form = PostForm()
 	return render(request, 'chat/add_post.html', {'form': form})
+
+@login_required
+@require_POST
+def add_comment(request, post_id):
+	""" Add a comment to a post """
+
+	form = CommentForm(request.POST)
+	if form.is_valid():
+		
+		comment = form.save(Post.objects.get(id=post_id), request.user)
+	return redirect(reverse('chat:home'))
