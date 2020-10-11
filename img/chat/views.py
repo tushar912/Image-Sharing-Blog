@@ -9,13 +9,26 @@ from .models import Post
 
 @login_required
 def home(request):
-	""" The home news feed page """
-
-	# Get users whose posts to display on news feed and add users account
+	
 	_users = list(request.user.followers.all())
 	_users.append(request.user)
 
-	# Get posts from users accounts whose posts to display and order by latest
 	posts = Post.objects.filter(user__in=_users).order_by('-posted_date')
 	comment_form = CommentForm()
 	return render(request, 'chat/home.html', {'posts': posts, 'comment_form': comment_form})
+
+@login_required
+def add_post(request):
+
+	if request.method == 'POST':
+		form = PostForm(request.POST, request.FILES)
+	
+		if form.is_valid():
+			post = form.save(commit=False)
+			
+			post.user = request.user
+			post.save()
+			return redirect('chat:home')
+	else:
+		form = PostForm()
+	return render(request, 'chat/add_post.html', {'form': form})
